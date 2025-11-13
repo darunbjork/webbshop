@@ -31,23 +31,30 @@ function Products() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleAddItems = (idToAdd) => {
+    const newItems = data.map((item) => item.id === idToAdd.id);
+    setData(newItems);
+  };
+
   return (
     <div className="card-items">
-      <h1>webbshop</h1>
+      <h1>web shop</h1>
       <button onClick={fetchData}>Fetch data</button>
 
       {lastUpdate && <p>Last Update: {lastUpdate}</p>}
 
       {laoding && <p>Loading...</p>}
       {data.map((item) => (
-        <ul>
+        <ul key={item.id} className="cards">
           <p>Name: {item.name}</p>
           <p>Description: {item.description}</p>
           <p>Price: {item.price}</p>
           <p>Category: {item.category}</p>
           <p>Image: {item.image}</p>
+          <button onClick={() => handleAddItems(item.id)}>Add</button>
         </ul>
       ))}
+      {data.length === 0 && <p>No data available. Click on fetch data!</p>}
     </div>
   );
 }

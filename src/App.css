@@ -17,3 +17,8 @@
   color: black;
 }
 
+.cards {
+  border: 30px;
+  background-color: rgb(180, 186, 143);
+  padding: 10px;
+}
